@@ -5,10 +5,11 @@ source = {
 }
 description = {
    homepage = "https://github.com/yfrit/LocalRockInit",
-   license = "*** please specify a license ***"
+   license = "MIT <http://opensource.org/licenses/MIT>"
 }
 dependencies = {
-   "lua ~> 5.1"
+   "lua ~> 5.1",
+   "luafilesystem ~> 1.7.0-2"
 }
 build = {
    type = "builtin",

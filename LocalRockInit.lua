@@ -1,5 +1,15 @@
---get rockspecs file
-local file = io.open("yfritlib-scm-1.rockspec")
+--find rockspecs file
+local lfs = require("lfs")
+local filePath
+for name in lfs.dir(".") do
+    if name:find(".rockspec") then
+        filePath = name
+    end
+end
+assert(filePath, "Cannot use LocalRockInit, repository doesn`t have a rockspec file.")
+
+--open rockspecs file
+local file = io.open(filePath)
 local code = file:read("*a")
 file:close()
 
