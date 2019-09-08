@@ -14,8 +14,9 @@ local code = file:read("*a")
 file:close()
 
 --turn its globals into a table, to prevent side-effects
+code = code:gsub("\r", "")
 code = code:gsub('"\n', '",\n')
-code = code:gsub('}\n', '},\n')
+code = code:gsub("}\n", "},\n")
 code = string.format([[
     return {
         %s
@@ -23,7 +24,9 @@ code = string.format([[
 ]], code)
 
 --get the builds.modules table
-local modules = loadstring(code)().build.modules
+local loadedString = loadstring(code)
+assert(loadedString, "Invalid code:\n" .. code)
+local modules = loadedString().build.modules
 
 --iterate it to get full and local paths
 local overrides = {}
